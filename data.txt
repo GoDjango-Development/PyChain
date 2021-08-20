@@ -1,0 +1,43 @@
+"""
+Ethereum Node Data:
+infura_url = "https://mainnet.infura.io/v3/0893ea819efe41509c62b3c0faefc5ea"
+rinkeby_test_url = "https://rinkeby.infura.io/v3/0893ea819efe41509c62b3c0faefc5ea"
+ropsten_test_url = "https://ropsten.infura.io/v3/0893ea819efe41509c62b3c0faefc5ea"
+goerli_test_url = "https://goerli.infura.io/v3/0893ea819efe41509c62b3c0faefc5ea"
+ganache_url = "http://192.168.43.62:7545"
+
+Bitcoin Node Data:
+rpc_address="216.155.132.172",
+rpc_port=18332,
+rpc_user="estebanRPC",
+rpc_password="Password2020**"
+
+Ethereum account On MAINNET
+address: 0x3cDb2F1d7F800CC2d72213B17AFc999a31D0e90e
+prik: 78ebaebce1fb9f3ca35112557ec202abf43cea029c752f25230a43a266c1877f
+
+dai transact to 0x2dded6da1bf5dbdf597c45fcfaa3194e53ecfeaf amount 0 prik 78ebaebce1fb9f3ca35112557ec202abf43cea029c752f25230a43a266c1877f gas-price 1 fee 1
+"""
+
+Loading modules ... please wait...
+Welcome to TFProtocol Blockchains's Works. For any kind of help please type "help",if you want to get help about some command please type "help command".
+TF-RESULT: 400
+>> tron set-provider url https://api.shasta.trongrid.io with a71bd239-49a2-44c4-a10c-d86c051e6f01
+0 Provider set successfully
+Your cache id is: 10
+TF-RESULT: 400
+>> tron create-account 
+0 {'base58check_address': 'TJTzrLRrHHPbdSMcwoS87QYLnXHmUACUof', 'hex_address': '415d32ed3056910f819bf0b7cb3402f34f61085bb5', 'private_key': '907fd95e74362d5262124ac953ef86995db891697d91c6cf68a535ba8a915f53', 'public_key': '7ec2b328b076e0cbf94d148c645c78cc387d2440acac0a0aa28e82adf10c16a963cfd00f86b1c934b5cd781d268f9465718d2b6486d85db857658bc0e54fb0b3'}
+TF-RESULT: 400
+>> tron get-balance 
+12 Exception occured... try again... error message
+None
+
+TF-RESULT: 400
+>> tron get-balance of TJTzrLRrHHPbdSMcwoS87QYLnXHmUACUof
+0 2000
+TF-RESULT: 400
+>> tether set-token-type type usdt-trc20
+0 {'result': 'Cannot load or create the contract successfully...'}
+TF-RESULT: 400
+>> 
