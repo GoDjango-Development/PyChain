@@ -2,6 +2,8 @@ import com.nerox.client.misc.StatusInfo;
 import com.nerox.client.misc.StatusServer;
 import com.nerox.client.modules.XSAce;
 
+import java.util.MissingFormatArgumentException;
+
 public class JustAnotherAction {
     public final Ethereum eth;
     public final Bitcoin btc;
@@ -39,14 +41,23 @@ public class JustAnotherAction {
     }
 }
 abstract class JustAnotherBase{
-    JustAnotherCallback callback;
+    private final JustAnotherCallback callback;
     public JustAnotherBase(JustAnotherCallback callback){
         this.callback = callback;
     }
-    public boolean setProvider(String url, String apiKey){
+    public boolean setProvider(String url, String apiKey, String user, String pass, String address, int port,
+                               String protocol){
         StringBuilder builder = new StringBuilder();
-        builder.append(this.getClass().getName().toLowerCase());
-        builder.append(" set-provider ");
+        String env = this.getClass().getName().toLowerCase();
+        builder.append(env);
+        builder.append(" set-provider");
+        if (env.equals(Bitcoin.class.getName().toLowerCase())){
+            builder.append(" user ").append(user);
+            builder.append(" pass ").append(pass);
+            builder.append(" address ").append(address);
+            builder.append(" port ").append(port);
+            builder.append(" protocol ").append(protocol);
+        }
         if (!apiKey.isEmpty())
             builder.append(" with ").append(apiKey);
         if (!url.isEmpty())
@@ -54,11 +65,111 @@ abstract class JustAnotherBase{
         this.callback.putInOutPocket(builder.toString());
         return this.callback.checkPocket().contains("TF-RESULT: 400");
     }
+    public boolean getBalance(String of){
+        StringBuilder builder = new StringBuilder();
+        builder.append(this.getClass().getName().toLowerCase());
+        builder.append(" get-balance ");
+        if (!of.isEmpty())
+            builder.append(" of ").append(of);
+        this.callback.putInOutPocket(builder.toString());
+        return this.callback.checkPocket().contains("TF-RESULT: 400");
+    }
+    public boolean createAccount(String name){
+        StringBuilder builder = new StringBuilder();
+        String env = this.getClass().getName().toLowerCase();
+        builder.append(env);
+        builder.append(" create-account");
+        if (env.equals(Bitcoin.class.getName().toLowerCase())){
+            builder.append(" name ").append(name);
+        }
+        this.callback.putInOutPocket(builder.toString());
+        return this.callback.checkPocket().contains("TF-RESULT: 400");
+    }
+    public boolean createWallet(String name){
+        return createAccount(name);
+    }
+    public boolean getPrivateKey(){
+        StringBuilder builder = new StringBuilder();
+        builder.append(this.getClass().getName().toLowerCase());
+        builder.append(" get-prik ");
+        this.callback.putInOutPocket(builder.toString());
+        return this.callback.checkPocket().contains("TF-RESULT: 400");
+    }
+    public boolean getRawPrivateKey(){
+        StringBuilder builder = new StringBuilder();
+        builder.append(this.getClass().getName().toLowerCase());
+        builder.append(" get-raw-prik ");
+        this.callback.putInOutPocket(builder.toString());
+        return this.callback.checkPocket().contains("TF-RESULT: 400");
+    }
+    public boolean getAddress(){
+        StringBuilder builder = new StringBuilder();
+        builder.append(this.getClass().getName().toLowerCase());
+        builder.append(" get-address");
+        this.callback.putInOutPocket(builder.toString());
+        return this.callback.checkPocket().contains("TF-RESULT: 400");
+    }
+    public boolean getPublicKey(String of){
+        StringBuilder builder = new StringBuilder();
+        String env = this.getClass().getName().toLowerCase();
+        builder.append(env);
+        builder.append(" get-pubk");
+        if (env.equals(Bitcoin.class.getName().toLowerCase())){
+            builder.append(" of ");
+        }
+        this.callback.putInOutPocket(builder.toString());
+        return this.callback.checkPocket().contains("TF-RESULT: 400");
+    }
+    public boolean getTransactionStatus(String of){
+        StringBuilder builder = new StringBuilder();
+        builder.append(this.getClass().getName().toLowerCase());
+        builder.append(" get-tx-status");
+        builder.append(" of ").append(of);
+        this.callback.putInOutPocket(builder.toString());
+        return this.callback.checkPocket().contains("TF-RESULT: 400");
+    }
+    public boolean setAccount(){
+        
+    }
+    protected boolean transfer(String to, String privateKey, float fee, boolean isReplaceable,
+                            float gasPrice, float gasLimit, String from, float amount){
+        StringBuilder builder = new StringBuilder();
+        String env = this.getClass().getName().toLowerCase();
+        builder.append(env);
+        builder.append(" transfer");
+        builder.append(" amount ").append(amount);
+        if (env.equals("bitcoin")){
+            builder.append(" replace ").append(isReplaceable);
+            builder.append(" passphrase ").append(privateKey);
+        }
+        else if (!privateKey.isEmpty())
+            builder.append(" with ").append(privateKey);
+        else
+            throw new MissingFormatArgumentException("Private Key or passphrase is required for a transaction" +
+                    "always...");
+        if (env.equals("ethereum")){
+            builder.append(" gas-price ").append(gasPrice);
+            builder.append(" gas-limit ").append(gasLimit);
+        }else if (fee > 0){
+                builder.append(" fee ").append(fee);
+        }
+        if (!from.isEmpty())
+            builder.append(" from ").append(from);
+        if (!to.isEmpty())
+            builder.append(" to ").append(to);
+        this.callback.putInOutPocket(builder.toString());
+        return this.callback.checkPocket().contains("TF-RESULT: 400");
+    }
+
 }
 
 final class Ethereum extends JustAnotherBase{
     public Ethereum(JustAnotherCallback callback) {
         super(callback);
+    }
+    public boolean transfer(String to, String privateKey, String from, float amount, float gasPrice,
+                            float gasLimit){
+        return super.transfer(to, privateKey, 0, false, gasPrice, gasLimit, from, amount);
     }
 }
 final class Bitcoin extends JustAnotherBase{
@@ -79,5 +190,9 @@ final class Tether extends JustAnotherBase{
 final class Tron extends JustAnotherBase{
     public Tron(JustAnotherCallback callback) {
         super(callback);
+    }
+
+    public boolean setProvider(String url, String apiKey) {
+        return super.setProvider(url, apiKey, null, null, null, 0, null);
     }
 }
