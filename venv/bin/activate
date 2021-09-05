@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/media/n4b3ts3/DATOS/Proyectos/Osvaldo/Respuesta/TFBlockchain/venv"
+VIRTUAL_ENV="/home/etherbeing/Works/proyectos/Osvaldo/Respuesta/PychainFramework/venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

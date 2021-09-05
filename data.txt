@@ -16,6 +16,20 @@ Ethereum account On MAINNET
 address: 0x3cDb2F1d7F800CC2d72213B17AFc999a31D0e90e
 prik: 78ebaebce1fb9f3ca35112557ec202abf43cea029c752f25230a43a266c1877f
 
+Ethereum account On Ropsten
+{'address': '0x4f571faC1ecb15C9C5b125653F56A83B6B4aC917', 'private-key': HexBytes('0x7fcb64f5067de3d97998bee741e856e35edf9f819d4ee14c48f7beb49b7647b0')}
+
+Ethereum USDC on Ropsten
+true
+0 {'address': '0x4f571faC1ecb15C9C5b125653F56A83B6B4aC917'}
+12 Exception occured... try again... error message
+Could not transact with/call contract function, is contract deployed correctly and chain synced?
+0 {'private-key': '7fcb64f5067de3d97998bee741e856e35edf9f819d4ee14c48f7beb49b7647b0'}
+0 {'private-key': '7fcb64f5067de3d97998bee741e856e35edf9f819d4ee14c48f7beb49b7647b0'}
+0 0x4f571faC1ecb15C9C5b125653F56A83B6B4aC917
+0 None
+0 {'tx': AttributeDict({'blockHash': HexBytes('0x2644df588b5d5d5d5d967cfc779ef17439f8c274cf4c2c00653af6b4fa740111'), 'blockNumber': 10923369, 'from': '0xdeeb876660313c082aB8c7ab750d472683919A09', 'gas': 200000, 'gasPrice': 1500000009, 'hash': HexBytes('0x60c27b4402d313f0a0a15911a074c899d5a5639293504f9ecdc98ecaf1e32077'), 'input': '0x7ff36ab500000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080000000000000000000000000deeb876660313c082ab8c7ab750d472683919a090000000000000000000000000000000000000000000000000000017b8dd9fa0b0000000000000000000000000000000000000000000000000000000000000002000000000000000000000000c778417e063141139fce010982780140aa0cd5ab00000000000000000000000081d71f3fa3ee458753196d7cfcdaa82d26b22ce9', 'nonce': 1, 'r': HexBytes('0xb1f5a7e27f66227e69dd8a12e3482b62eeea86275dce476e00125df2e15a5df8'), 's': HexBytes('0x0e2a329ed959de3bf9eb22ee96aa65ad338210b78f80b12e7f137d037ce14b67'), 'to': '0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D', 'transactionIndex': 18, 'type': '0x0', 'v': 28, 'value': 3562639510967648})}
+Finalizing...
 dai transact to 0x2dded6da1bf5dbdf597c45fcfaa3194e53ecfeaf amount 0 prik 78ebaebce1fb9f3ca35112557ec202abf43cea029c752f25230a43a266c1877f gas-price 1 fee 1
 """
 
@@ -23,7 +37,7 @@ Loading modules ... please wait...
 Welcome to TFProtocol Blockchains's Works. For any kind of help please type "help",if you want to get help about some command please type "help command".
 TF-RESULT: 400
 >> tron set-provider url https://api.shasta.trongrid.io with a71bd239-49a2-44c4-a10c-d86c051e6f01
-0 Provider set successfully
+																																																																																																0 Provider set successfully
 Your cache id is: 10
 TF-RESULT: 400
 >> tron create-account 

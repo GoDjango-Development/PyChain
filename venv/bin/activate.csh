@@ -8,7 +8,7 @@ alias deactivate 'test $?_OLD_VIRTUAL_PATH != 0 && setenv PATH "$_OLD_VIRTUAL_PA
 # Unset irrelevant variables.
 deactivate nondestructive
 
-setenv VIRTUAL_ENV "/media/n4b3ts3/DATOS/Proyectos/Osvaldo/Respuesta/TFBlockchain/venv"
+setenv VIRTUAL_ENV "/home/etherbeing/Works/proyectos/Osvaldo/Respuesta/PychainFramework/venv"
 
 set _OLD_VIRTUAL_PATH="$PATH"
 setenv PATH "$VIRTUAL_ENV/bin:$PATH"

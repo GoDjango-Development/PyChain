@@ -22,18 +22,22 @@ class Tron:
             return {"connected": True}
         except Exception:
             return {"connected": False}
-            
-        
 
     # Test
-    def transact(self, to_address: str, amount: int, priv_key=None, from_address=None, fee_limit =5_000_000):
+    def transact(self, to_address: str, amount: int, private_key=None, from_address=None,
+                 fee_limit: int = 5_000_000):
         if from_address is None:
             from_address = self.get_current_account_address()
-        if priv_key is None and self.get_prik_of_current() is None:
+            if from_address is None:
+                raise Exception("Origin address cannot be determine neither from parameters nor from set-account data")
+        if private_key is None and self.get_prik_of_current() is None:
             raise ValueError("Non private key given... please provide one so we can protect your data...")
-        priv_key = tronpy.tron.PrivateKey(bytes.fromhex(priv_key))
-        transfer = (self.tron_instance.trx.transfer(from_=from_address, to=to_address, amount=amount)
-                    .fee_limit(fee_limit).build().sign(priv_key=priv_key))
+        private_key = tronpy.tron.PrivateKey(bytes.fromhex(private_key))
+        transfer = (self.tron_instance.trx.transfer(from_=from_address, to=to_address, amount=int(amount))
+                    .fee_limit(int(fee_limit))
+                    .build()
+                    .sign(priv_key=private_key)
+                    )
         return transfer.broadcast().wait()
 
     def get_balance_of(self, of: str = None):

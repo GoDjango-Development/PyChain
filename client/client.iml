@@ -7,14 +7,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library">
-      <library name="tfproto">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/tfproto.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
+    <orderEntry type="library" name="tfproto" level="application" />
   </component>
 </module>

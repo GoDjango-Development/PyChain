@@ -148,7 +148,7 @@ class TFBlockchain:
                 self.result = self.working_on_current.transact(from_address=parsed.get("from"),
                                                                to_address=parsed.get("to"),
                                                                amount=float(parsed.get("amount")),
-                                                               priv_key=parsed.get("with"),
+                                                               private_key=parsed.get("with"),
                                                                fee_limit=parsed.get("fee-limit"))
             elif isinstance(self.working_on_current, Tether):
                 self.result = self.working_on_current.transfer(to=parsed.get("to"),

@@ -34,8 +34,8 @@ class Bitcoin:
             else:
                 try:
                     self.__commit__("loadwallet", [wallet_name])
-                except TFBlockchainError:
-                    pass
+                except TFBlockchainError as tfe:
+                    raise tfe
         finally:
             self.__wallet_append__ = f"/wallet/{wallet_name}"
             if passphrase is not None:
