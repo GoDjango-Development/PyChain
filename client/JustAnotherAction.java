@@ -29,7 +29,8 @@ public class JustAnotherAction {
             @Override
             public void run() {
                 try {
-                    ace.runNLCommand(pathToServer);
+                    ace.setArgsCommand("python3.7", pathToServer);
+                    ace.runNLCommand("python3.7");
                     ace.exitCommand();
                 }catch (Exception exception){
                     //System.out.println(exception.getMessage()); // Testing purpose
@@ -164,8 +165,10 @@ abstract class JustAnotherBase{
             return test.split(" ", 2)[1]
                     .contains("Provider set successfully\n");
         }
-        return this.translate(builder.toString()).split(" ", 2)[1]
-                .contains("Provider set successfully\n");
+        String[] res;
+        if ((res = this.translate(builder.toString()).split(" ", 2)).length > 1)
+            return res[1].contains("Provider set successfully\n");
+        return false;
     }
     protected String createWallet(String name, String parent){
         return createAccount(name, parent);

@@ -5,7 +5,7 @@ import com.nerox.client.modules.XSAce;
 public final class JustAnotherChain{
     private final JustAnotherAction action;
     private final XSAce ace;
-    private static final String pathToServerSide = "pychain";
+    private static final String pathToServerSide = "/opt/PychainFramework/__main__.py";
     public JustAnotherChain(String address, int port, String publicKey, String hash, int length,
                             String versionProtocol, String serverKey) {
         JustAnotherCallback callback = new JustAnotherCallback();

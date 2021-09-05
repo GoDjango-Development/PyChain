@@ -120,6 +120,11 @@ public final class JustAnotherCallback implements IXSAceCallback {
     }
 
     @Override
+    public void setArgsCallback(StatusInfo buildStatusInfo) {
+        //
+    }
+
+    @Override
     public void runReadNLCallback(StatusInfo statusInfo) {
         //System.out.println("Replacing");
         //statusServer(statusInfo); // Only for testing purposes ("Comment this in production")
